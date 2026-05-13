@@ -5,11 +5,17 @@
 
 <style>
 body{
-background:linear-gradient(to bottom,#ff9eb5,#ffcce0);
-text-align:center;
+margin:0;
+padding:0;
 font-family:Arial;
-padding:40px;
+text-align:center;
+background:linear-gradient(to bottom,#ff8fb1,#ffc7d9);
 color:white;
+overflow:hidden;
+}
+
+.container{
+padding-top:60px;
 }
 
 h1{
@@ -18,48 +24,150 @@ font-size:50px;
 
 p{
 font-size:24px;
+padding:10px 25px;
 }
 
 img{
-width:250px;
-border-radius:20px;
-margin-top:20px;
+width:260px;
+border-radius:25px;
 box-shadow:0 0 20px white;
+margin-top:20px;
 }
 
 button{
-padding:15px 25px;
+padding:15px 30px;
 font-size:20px;
 border:none;
 border-radius:30px;
+margin:15px;
+cursor:pointer;
+}
+
+.yes{
 background:white;
 color:#ff4f81;
-margin-top:20px;
+}
+
+.no{
+background:#ff4f81;
+color:white;
+position:absolute;
+}
+
+.heart{
+position:absolute;
+color:white;
+font-size:20px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-10%);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
 }
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>Hey My Love ❤️</h1>
 
 <p>
-You are the best thing that ever happened to me.
-Thank you for always making me smile 💖
+Every moment with you feels magical ✨<br>
+You make my life happier and brighter every day 💖
 </p>
 
 <img src="<a href="https://ibb.co/q2HmPdy"><img src="https://i.ibb.co/RJXQV9v/Snapchat-760950476.jpg" alt="Snapchat-760950476" border="0"></a>">
 
-<br>
+<h2>Will You Stay Forever? 💍</h2>
 
-<button onclick="showMessage()">
-Click Here 💌
+<button class="yes" onclick="loveMessage()">
+YES ❤️
 </button>
 
+<button class="no" id="noBtn">
+NO 😢
+</button>
+
+</div>
+
 <script>
-function showMessage(){
-alert("I Love You So Much ❤️");
+
+function loveMessage(){
+
+document.body.innerHTML = `
+
+<div style="
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(to bottom,#ff8fb1,#ffcce0);
+font-family:Arial;
+text-align:center;
+color:white;
+padding:20px;
+">
+
+<h1 style="font-size:55px;">
+YAYYYY ❤️
+</h1>
+
+<p style="font-size:28px; max-width:600px;">
+You just made me the happiest girl ever 💖<br><br>
+I promise to love you,
+support you,
+annoy you,
+and stay with you forever ✨
+</p>
+
+<h2 style="font-size:40px;">
+Forever Us 💍
+</h2>
+
+</div>
+
+`;
+
+  }
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",moveButton);
+
+function moveButton(){
+const x=Math.random()*300;
+const y=Math.random()*500;
+
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
 }
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=Math.random()*3+2+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+}
+
+setInterval(createHeart,300);
+
 </script>
 
 </body>
